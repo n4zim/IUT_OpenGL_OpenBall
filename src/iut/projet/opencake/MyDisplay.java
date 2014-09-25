@@ -18,6 +18,8 @@ public class MyDisplay {
 			System.exit(0);
 		}
 		
+		app.start();
+		
 		while (!Display.isCloseRequested()) {
 			app.update();
 			Display.update();
