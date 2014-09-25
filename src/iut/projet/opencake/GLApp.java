@@ -44,10 +44,12 @@ public class GLApp {
 	Vertex h = new Vertex(0.5f,0.5f,-0.5f);
 	
 	private void drawFace(Vertex v1, Vertex v2, Vertex v3, Vertex v4) {
+		GL11.glBegin(GL11.GL_POLYGON);
 		v1.draw();
 		v2.draw();
 		v3.draw();
 		v4.draw();
+		GL11.glEnd();
 	}
 	
 	public void update() {
@@ -71,11 +73,11 @@ public class GLApp {
 		drawFace(a,b,h,g);
 		
 		GL11.glColor3f( .0f, 1.0f, 1.0f );
-		//drawFace(d,c,e,f);
+		drawFace(d,c,e,f);
 		GL11.glColor3f( 1.0f, .0f, .0f );
-		//drawFace(g,h,e,f);
+		drawFace(g,h,e,f);
 		GL11.glColor3f( 1.0f, 1.0f, 1.0f );
-		//drawFace(c,e,h,b);
+		drawFace(c,e,h,b);
 		
 		
 		GL11.glEnd();
