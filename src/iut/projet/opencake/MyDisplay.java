@@ -24,6 +24,7 @@ public class MyDisplay {
 		while (!Display.isCloseRequested()) {
 			app.update();
 			Display.update();
+			Display.sync(60);
 		}
 		
 		Display.destroy();
