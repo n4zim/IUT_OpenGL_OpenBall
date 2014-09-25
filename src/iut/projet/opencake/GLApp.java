@@ -21,18 +21,6 @@ public class GLApp {
 		//GL11.glRotatef(0.5f, .1f, .0f, 0);
 	}
 	
-	class Vertex {
-		float x,y,z;
-		public Vertex(float x, float y, float z) {
-			this.x = x;
-			this.y = y;
-			this.z = z;
-		}
-		
-		public void draw() {
-			GL11.glVertex3f(x,y,z);
-		}
-	}
 	
 	Vertex a = new Vertex(0,0.5f,0);
 	Vertex b = new Vertex(0.5f,0.5f,0);
