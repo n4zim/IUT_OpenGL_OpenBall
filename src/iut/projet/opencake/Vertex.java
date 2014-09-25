@@ -3,7 +3,9 @@ package iut.projet.opencake;
 import org.lwjgl.opengl.GL11;
 
 class Vertex {
-	float x,y,z;
+	double x;
+	double y;
+	double z;
 	public Vertex(float x, float y, float z) {
 		this.x = x;
 		this.y = y;
@@ -11,6 +13,6 @@ class Vertex {
 	}
 	
 	public void draw() {
-		GL11.glVertex3f(x,y,z);
+		GL11.glVertex3d(x,y,z);
 	}
 }
