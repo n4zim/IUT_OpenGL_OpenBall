@@ -4,67 +4,63 @@ import org.lwjgl.opengl.GL11;
 
 public class GLApp {
 	MyDisplay display;
+	Cube cube = new Cube();
+	Plane plane = new Plane();
 	float rotation = 0.0f;
+	float a = -1f;
+	int factor = 1;
+	Sphere sphere;
 	
 	public GLApp(MyDisplay display) {
 		this.display = display; 
+		
+
+		sphere = new Sphere();
 	}
 	
 	public void start() {
 		GL11.glEnable(GL11.GL_DEPTH_TEST);		// Init de la 3D
 		GL11.glMatrixMode(GL11.GL_PROJECTION);	// Projection orthogonale
 		GL11.glLoadIdentity();					// Charge une matrice vierge
+		GL11.glEnable( GL11.GL_POINT_SMOOTH );
+		GL11.glEnable( GL11.GL_BLEND );
+		GL11.glBlendFunc( GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA );
+		GL11.glPointSize( 10 );
 	}
 	
-	// Création des points du cube
-	Vertex a = new Vertex(0,0.5f,0);
-	Vertex b = new Vertex(0.5f,0.5f,0);
-	Vertex c = new Vertex(0.5f,0,0);
-	Vertex d = new Vertex(0,0,0);
-	Vertex e = new Vertex(0.5f,0,-.5f);
-	Vertex f = new Vertex(0,0,-0.5f);
-	Vertex g = new Vertex(0,0.5f,-0.5f);
-	Vertex h = new Vertex(0.5f,0.5f,-0.5f);
-	
-	// Dessine une face
-	private void drawFace(Vertex v1, Vertex v2, Vertex v3, Vertex v4) {
-		GL11.glBegin(GL11.GL_POLYGON);			// Init d'un nouveau polygone
-		v1.draw();
-		v2.draw();
-		v3.draw();
-		v4.draw();
-		GL11.glEnd();		// Fin du polygone
-	}
-	
-	public void update() {
-		rotation = 0.30f;	// Fixe la vitesse de rotation
+	public void update() {rotation = 0.60f;
+		/*	// Fixe la vitesse de rotation
+		a += factor*0.01f;
 		
+		if(a > 1) {
+			a = 1;
+			factor = -1;
+		}
+		
+		if(a < -1) {
+			a = -1;
+			factor = 1;
+		}
+
+		//plane.set(-10, a, -10, 10, 10);
+		GL11.glRotatef(rotation, .05f, .5f, 0);	// Active la rotation (quantite, x, y, z)
+		*/
+	
+		sphere.MrSphere(100, 400);
+	
+		GL11.glRotatef(rotation, .05f, .5f, 0);
+	    GL11.glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT|GL11.GL_DEPTH_BUFFER_BIT);	// Clear de l'écran
-		
-		GL11.glRotatef(rotation, .1f, .5f, 0);	// Active la rotation (quantité, x, y, z)
 			
-		// Face 1
-		GL11.glColor3f( .0f, .0f, 1.0f );	// Couleur du prochain point désiné (RVB)
-		drawFace(a,b,c,d);					// Dessine la face
+		GL11.glBegin(GL11.GL_POINTS);
+		GL11.glColor3f( 0.95f, 0.207f, 0.031f );
+
+		for (Vertex pt : sphere.points) {
+			GL11.glVertex3f(pt.x, pt.y, pt.z);
+		}
+		GL11.glEnd();
 		
-		// Face 2
-		GL11.glColor3f( 1.0f, .0f, 1.0f );
-		drawFace(a,g,f,d);
-		
-		// Face 3
-		GL11.glColor3f( .0f, 1.0f, 1.0f );
-		drawFace(a,b,h,g);
-		
-		// Face 4
-		GL11.glColor3f( .0f, 1.0f, 1.0f );
-		drawFace(d,c,e,f);
-		
-		// Face 5
-		GL11.glColor3f( 1.0f, .0f, .0f );
-		drawFace(g,h,e,f);
-		
-		// Face 6
-		GL11.glColor3f( 1.0f, 1.0f, 1.0f );
-		drawFace(c,e,h,b);
+		//cube.draw();
+		//plane.draw();
 	}
 }

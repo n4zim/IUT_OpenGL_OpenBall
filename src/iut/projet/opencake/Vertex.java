@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 class Vertex {
 	float x,y,z;
+	
 	public Vertex(float x, float y, float z) {
 		this.x = x;
 		this.y = y;

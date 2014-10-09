@@ -12,7 +12,7 @@ public class MyDisplay {
 		
 		try {
 			Display.setTitle("The Magic OpenBall - OpenCake Engine");
-			Display.setDisplayMode(new DisplayMode(800,600));
+			Display.setDisplayMode(new DisplayMode(600,600));
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
