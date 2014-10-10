@@ -44,8 +44,10 @@ public class GLApp {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT|GL11.GL_DEPTH_BUFFER_BIT); // Screen clear	
 		
 		matSphere.Identitee();
-
+		matSphere.Echelle((float)(frame++)/100, (float)(frame++)/100, 1);
 		System.out.println(matSphere.ToString());
+		
+		GL11.glLoadMatrix(matSphere.GetMatrix());
 		sphere.Draw();
 		
 		GL11.glBegin(GL11.GL_POLYGON);
