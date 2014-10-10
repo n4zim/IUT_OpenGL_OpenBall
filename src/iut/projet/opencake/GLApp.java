@@ -50,12 +50,11 @@ public class GLApp {
 		
 		matSphere.Identitee();
 		//matSphere.Echelle((float)(frame++)/100, (float)(frame++)/100, 1);
-		matSphere.Translation((float)(frame++)/1000, (float)(frame++)/1000, (float)(frame++)/1000);
+		matSphere.Translation((float)(frame++)/1000, (float)(frame++)/1000, 0);
 		System.out.println(matSphere.ToString());
 		
 		//GL11.glTranslatef(.01f, .01f, .0f);
-		GL11.glLoadMatrix(matSphere.GetMatrix());
-		sphere.Draw();
+		sphere.Draw(matSphere);
 		
 		//GL11.glLoadIdentity();
 		
