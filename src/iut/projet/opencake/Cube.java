@@ -1,8 +1,6 @@
 package iut.projet.opencake;
 
-import java.awt.List;
 import java.util.Vector;
-
 import org.lwjgl.opengl.GL11;
 
 public class Cube {
