@@ -11,6 +11,19 @@ class Vertex {
 		this.z = z;
 	}
 	
+	public Vertex ApplyMatrix(Matrice4 a) {
+		float tx = 0, ty = 0, tz = 0; 
+
+		for(int i = 0; i < 4; i++)
+			tx += (a.Vertices[i] * x);
+		for(int i = 4; i < 8; i++)
+			ty += (a.Vertices[i] * y);
+		for(int i = 8; i < 12; i++)
+			tz += (a.Vertices[i] * z);		
+		
+		return new Vertex(tx, ty, tz);
+	}
+	
 	public void draw() {
 		GL11.glVertex3f(x,y,z);
 	}
