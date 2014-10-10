@@ -44,7 +44,7 @@ public class GLApp {
 		//GL11.glLoadIdentity();
 		//GL11.glTranslatef(0, 0, 0);
 		
-		GL11.glRotatef(rotation, .05f, .3f, .9f); // rotation
+		//GL11.glRotatef(rotation, .05f, .3f, .9f); // rotation
 	    GL11.glClearColor( 1.0f, 1.0f, 1.0f, 1.0f ); // white background
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT|GL11.GL_DEPTH_BUFFER_BIT); // Screen clear	
 		
@@ -53,8 +53,8 @@ public class GLApp {
 		matSphere.Translation((float)(frame++)/1000, (float)(frame++)/1000, (float)(frame++)/1000);
 		System.out.println(matSphere.ToString());
 		
-		GL11.glTranslatef(.01f, .01f, .0f);
-		//GL11.glLoadMatrix(matSphere.GetMatrix());
+		//GL11.glTranslatef(.01f, .01f, .0f);
+		GL11.glLoadMatrix(matSphere.GetMatrix());
 		sphere.Draw();
 		
 		//GL11.glLoadIdentity();

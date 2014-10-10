@@ -3,12 +3,13 @@ package iut.projet.opencake;
 import org.lwjgl.opengl.GL11;
 
 class Vertex {
-	float x,y,z;
+	float x,y,z,w;
 	
 	public Vertex(float x, float y, float z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		this.w = 1;
 	}
 	
 	public Vertex ApplyMatrix(Matrice4 a) {
