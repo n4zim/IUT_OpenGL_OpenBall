@@ -29,8 +29,13 @@ public class Matrice4 {
 		}
 	}
 	
+
+	
 	public void Translation(float x, float y, float z) {
-		
+		Identitee();
+		vertices[3] = x;
+		vertices[7] = y;
+		vertices[11] = z;
 	}
 	
 	public void Echelle(float x, float y, float z) {
