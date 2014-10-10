@@ -15,7 +15,6 @@ public class Sphere {
 				float x = (float) Math.sin(t) * (float) Math.cos(b);
 				float y = (float) Math.cos(t);
 				float z = (float) Math.sin(t) * (float) Math.sin(b);
-					
 				
 				points.addElement(new Vertex(x, y, z));
 			}
