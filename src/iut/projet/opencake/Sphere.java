@@ -6,6 +6,8 @@ import org.lwjgl.opengl.GL11;
 
 public class Sphere {
 	Vector<Vertex> points = new Vector<Vertex>();
+	Vertex translationVector = new Vertex(0,0,0);
+	Matrice4 transformationMatrix = new Matrice4();
 	int nbPointsParLigne;
 	
 	public void MrSphere(int subSeg, int subPi) {
@@ -26,7 +28,7 @@ public class Sphere {
 		}
 	}
 	
-	public void Draw(Matrice4 mat) {
+	public void draw(Matrice4 transformMatrix) {
 		// Dessin de la sphère
 		for(int i = 0; i < points.size() - nbPointsParLigne - 1; i++) {
 			GL11.glBegin(GL11.GL_POLYGON); // Begin polygon drawing
@@ -39,25 +41,25 @@ public class Sphere {
 			// 1, point i
 			GL11.glColor3f(1,0,0);
 			Vertex p = points.get(i);
-			Vertex pt = p.ApplyMatrix(mat);
+			Vertex pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 
 			// 2, point de la ligne en desssous
-			GL11.glColor3f(0,1,0);
+			//GL11.glColor3f(0,1,0);
 			p = points.get(i + nbPointsParLigne);
-			pt = p.ApplyMatrix(mat);
+			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 			
 			// 3, point suivant de la ligne en dessous
-			GL11.glColor3f(0,0,1);
+			//GL11.glColor3f(0.1f,0.1f,0.8f);
 			p = points.get(i + nbPointsParLigne + 1);
-			pt = p.ApplyMatrix(mat);
+			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 			
 			// 4, point suivant de la même ligne que i
-			GL11.glColor3f(1,0,1);
+			//GL11.glColor3f(0,0,0);
 			p = points.get(i + 1);
-			pt = p.ApplyMatrix(mat);
+			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 			
 			GL11.glEnd(); // end polygon

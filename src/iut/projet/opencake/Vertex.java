@@ -12,16 +12,26 @@ class Vertex {
 		this.w = 1;
 	}
 	
-	public Vertex ApplyMatrix(Matrice4 a) {
+	public Vertex applyTransfrom(Matrice4 transform, Vertex translate) {
 		float tx = 0, ty = 0, tz = 0; 
-
-		for(int i = 0; i < 4; i++)
-			tx += (a.Vertices[i] * x);
-		for(int i = 4; i < 8; i++)
-			ty += (a.Vertices[i] * y);
-		for(int i = 8; i < 12; i++)
-			tz += (a.Vertices[i] * z);		
 		
+		// TRANSFORM FIRST
+		// Operation : vector(x,y,z) * matrix(16) = vector(tx, ty, tz)
+		for(int i = 0; i < 4; i++)
+			tx += (transform.Vertices[i] * x);
+		for(int i = 4; i < 8; i++)
+			ty += (transform.Vertices[i] * y);
+		for(int i = 8; i < 12; i++)
+			tz += (transform.Vertices[i] * z);		
+		
+		// TRANSLATE THEN
+		if(translate != null) {
+			tx += translate.x;
+			ty += translate.y;
+			tz += translate.z;
+		}
+		
+		// RETURN TRANSFORMED VECTOR
 		return new Vertex(tx, ty, tz);
 	}
 	

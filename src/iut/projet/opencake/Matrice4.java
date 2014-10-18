@@ -15,29 +15,96 @@ public class Matrice4 {
 		}
 	}
 	
-    public void Translation(float x, float y, float z) {
-        Vertices[3] = x;
-        Vertices[7] = y;
-        Vertices[11] = z;
+    public void Rotation(float a, float b, float c) {
+    	/*	0	1	2	3
+    	 * 	4	5	6	7
+    	 * 	8	9	10	11
+    	 * 	12	13	14	15
+    	 */
+    	
+    	
+    	// Ordre : Roll PUIS Pitch PUIS Yaw
+    	
+    	Matrice4 rotatationMatrix = new Matrice4();
+    	Matrice4 rx = new Matrice4();
+
+    	rx.Vertices[5] = (float) (Math.cos(a));
+    	rx.Vertices[6] = (float) (-Math.sin(a));
+
+    	rx.Vertices[9] = (float) (Math.sin(a));
+    	rx.Vertices[10] = (float) (Math.cos(a));
+
+    	rotatationMatrix.multiplyBy(rx);
+    	
+    	Matrice4 ry = new Matrice4();
+    	ry.Vertices[0] = (float) (Math.cos(a));
+    	ry.Vertices[2] = (float) (Math.sin(a));
+
+    	ry.Vertices[8] = (float) (-Math.sin(a));
+    	ry.Vertices[10] = (float) (Math.cos(a));
+    	
+    	rotatationMatrix.multiplyBy(ry);
+
+    	Matrice4 rz = new Matrice4();
+    	rz.Vertices[0] = (float) (Math.cos(a));
+    	rz.Vertices[1] = (float) (-Math.sin(a));
+
+    	rz.Vertices[4] = (float) (Math.sin(a));
+    	rz.Vertices[5] = (float) (Math.cos(a));
+    	
+    	rotatationMatrix.multiplyBy(rz);
+    	
+    	Vertices = rotatationMatrix.Vertices;
     }
     
     public void Echelle(float x, float y, float z) {
         float w = 1;
-        // matrice actuelle * vecteur (x,y,z)
-
+        
+        multiplyByVector(new Vertex(x, y, z));
+    }
+    
+    public static int index(int i, int j) {
+    	// numéro de case : 4 * num ligne + num colonne
+    	return 4 * j + i;
+    }
+    
+    public void multiplyByVector(Vertex vector) {
         for(int i = 0; i < 4; i++) {
-        	Vertices[i] = Vertices[i]*x;
+        	Vertices[i] = Vertices[i]*vector.x;
         }
         for(int i = 4; i < 8; i++) {
-        	Vertices[i] = Vertices[i]*y;
+        	Vertices[i] = Vertices[i]*vector.y;
         }
         for(int i = 8; i < 12; i++) {
-        	Vertices[i] = Vertices[i]*z;
+        	Vertices[i] = Vertices[i]*vector.z;
         }
-        
+        for(int i = 12; i < 16; i++) {
+        	Vertices[i] = Vertices[i]*vector.w;
+        }
+    }
+    
+    public void multiplyBy(Matrice4 matriceB) {
+    	// Transcription algorithmique d'une multiplicatino de matrices carrées 
+    	// C[i,j] = E (n; k=1) { a[i,k] * b[k, j] }
+    	// avec ici une taille de matrice fixe (4,4)
+    	
+    	Matrice4 matriceC = new Matrice4();
+    	
+    	for(int i = 0; i < 4; i++) {
+    		for(int j = 0; j < 4; j++) {
+    			float cij = 0;
+    			for(int k = 0; k < 4; k++) {
+    				cij += this.Vertices[Matrice4.index(i, j)] * matriceB.Vertices[Matrice4.index(k, j)];
+    			}
+
+    			matriceC.Vertices[Matrice4.index(i, j)] = cij;
+    		}
+    	}
+    	
+    	this.Vertices = matriceC.Vertices;
     }
 
-	public String ToString() {
+	public String toString() {
 		String str = "matrice : \n";
 		for(int i = 0; i < 16; i++) {
 			str += Vertices[i] +  " ";
