@@ -18,6 +18,9 @@ public class MyDisplay {
 			e.printStackTrace();
 			System.exit(0);
 		}
+
+		Window w = new Window(app);
+		w.setVisible(true);
 		
 		app.start();
 		
@@ -27,6 +30,7 @@ public class MyDisplay {
 			Display.sync(60);
 		}
 		
+		w.dispose();
 		Display.destroy();
 	}
 }

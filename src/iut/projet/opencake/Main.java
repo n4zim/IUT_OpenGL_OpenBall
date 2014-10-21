@@ -9,9 +9,6 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		
-		Window.initWindow();
-		
 		Main main = new Main();
 		main.start();
 	}
