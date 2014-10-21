@@ -36,10 +36,10 @@ public class Sphere {
 	float g = 9.81f;
 	float limiteBas = -3f;
 	float limiteHaut = 3f;
+	float speed = 0.003f;
 	
 	public void fall() {
-		t += 0.003f;
-
+		t += speed;
 
 		// calcul de l'accélération d'un corps ponctuel
 		fallFactor = -(float)1/2 * g * t * t * fallDirection;
