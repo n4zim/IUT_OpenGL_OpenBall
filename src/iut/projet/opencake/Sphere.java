@@ -28,6 +28,46 @@ public class Sphere {
 		}
 	}
 	
+	float fallFactor = 0.01f;
+	float fallDirection = 1; 
+	float t = 0;
+	float ballWeight = 1;
+	boolean fallCanceled = false;
+	float g = 9.81f;
+	float limiteBas = -3f;
+	float limiteHaut = 3f;
+	
+	public void fall() {
+		t += 0.003f;
+
+
+		// calcul de l'accélération d'un corps ponctuel
+		fallFactor = -(float)1/2 * g * t * t * fallDirection;
+		translationVector.y += fallFactor;
+		
+		if(translationVector.y < limiteBas) {
+			translationVector.y = limiteBas;
+			fallDirection *= -1;
+			cancelfall();
+		}
+		
+		if(translationVector.y > limiteHaut) {
+			translationVector.y = limiteHaut;
+			fallDirection *= -1;
+			cancelfall();
+		}
+		
+		if(translationVector.y < limiteHaut / 2 && translationVector.y > limiteBas / 2) {
+			fallCanceled = false;			
+		}
+	}
+	
+	public void cancelfall() {
+		//fallFactor = 0f;
+		t = 0f;
+		fallCanceled = true;
+	}
+	
 	public void draw(Matrice4 transformMatrix) {
 		// Dessin de la sphère
 		for(int i = 0; i < points.size() - nbPointsParLigne - 1; i++) {
@@ -57,7 +97,7 @@ public class Sphere {
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 			
 			// 4, point suivant de la même ligne que i
-			//GL11.glColor3f(0,0,0);
+			GL11.glColor3f(1,1,1);
 			p = points.get(i + 1);
 			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
