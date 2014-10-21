@@ -44,6 +44,7 @@ public class GLApp {
         
         sphere.MrSphere(10, 20);
         matSphere = new Matrice4();
+        //matSphere.Echelle(2f, 2f, 2f);
                 
         sphere.draw(matSphere);
         sphere.fall();

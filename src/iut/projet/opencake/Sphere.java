@@ -85,13 +85,13 @@ public class Sphere {
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 
 			// 2, point de la ligne en desssous
-			//GL11.glColor3f(0,1,0);
+			GL11.glColor3f(0,1,0);
 			p = points.get(i + nbPointsParLigne);
 			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 			
 			// 3, point suivant de la ligne en dessous
-			//GL11.glColor3f(0.1f,0.1f,0.8f);
+			GL11.glColor3f(0.1f,0.1f,0.8f);
 			p = points.get(i + nbPointsParLigne + 1);
 			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
