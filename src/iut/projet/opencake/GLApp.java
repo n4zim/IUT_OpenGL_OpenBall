@@ -77,7 +77,12 @@ public class GLApp {
         // Création de la matrice de transformation
         matSphere = new Matrice4();
         matSphere.Echelle(echelleSphere, echelleSphere, echelleSphere); // applique une transformation d'échelle
-
+        
+        Matrice4 matRot = new Matrice4();
+        //matRot.Rotation(1.1f, 0.4f, 1.01f);
+        
+        matSphere.multiplyBy(matRot);
+        
         // Fait chuter la sphère
         sphere.fall();
         

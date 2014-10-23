@@ -43,7 +43,7 @@ public class Matrice4 {
     	 * 	12	13	14	15
     	 */    	
     	
-    	// Ordre : Roll PUIS Pitch PUIS Yaw
+    	// mat rotation =  mat Roll * mat Pitch *  mat Yaw
     	
     	Matrice4 rotatationMatrix = new Matrice4();
     	Matrice4 rx = new Matrice4();
@@ -57,20 +57,20 @@ public class Matrice4 {
     	rotatationMatrix.multiplyBy(rx);
     	
     	Matrice4 ry = new Matrice4();
-    	ry.Vertices[0] = (float) (Math.cos(a));
-    	ry.Vertices[2] = (float) (Math.sin(a));
+    	ry.Vertices[0] = (float) (Math.cos(b));
+    	ry.Vertices[2] = (float) (Math.sin(b));
 
-    	ry.Vertices[8] = (float) (-Math.sin(a));
-    	ry.Vertices[10] = (float) (Math.cos(a));
+    	ry.Vertices[8] = (float) (-Math.sin(b));
+    	ry.Vertices[10] = (float) (Math.cos(b));
     	
     	rotatationMatrix.multiplyBy(ry);
 
     	Matrice4 rz = new Matrice4();
-    	rz.Vertices[0] = (float) (Math.cos(a));
-    	rz.Vertices[1] = (float) (-Math.sin(a));
+    	rz.Vertices[0] = (float) (Math.cos(c));
+    	rz.Vertices[1] = (float) (-Math.sin(c));
 
-    	rz.Vertices[4] = (float) (Math.sin(a));
-    	rz.Vertices[5] = (float) (Math.cos(a));
+    	rz.Vertices[4] = (float) (Math.sin(c));
+    	rz.Vertices[5] = (float) (Math.cos(c));
     	
     	rotatationMatrix.multiplyBy(rz);
     	
