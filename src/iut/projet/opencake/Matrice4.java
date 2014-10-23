@@ -45,7 +45,7 @@ public class Matrice4 {
     	
     	// mat rotation =  mat Roll * mat Pitch *  mat Yaw
     	
-    	/*
+    	
     	Matrice4 rotatationMatrix = new Matrice4();
     	Matrice4 rx = new Matrice4();
     	
@@ -63,8 +63,8 @@ public class Matrice4 {
     	rx.Vertices[9] = y * z * (1 - (float)Math.cos(a)) + x * (float)Math.sin(a);
     	rx.Vertices[10] = z * z * (1 - (float)Math.cos(a)) + (float)Math.cos(a);
     	
-    	rotatationMatrix.multiplyBy(rx);*/
-       	
+    	rotatationMatrix.multiplyBy(rx);
+       	/*
     	Matrice4 rotatationMatrix = new Matrice4();
     	Matrice4 rx = new Matrice4();
 
@@ -93,7 +93,7 @@ public class Matrice4 {
     	rz.Vertices[5] = (float) (Math.cos(a));
     	
     	rotatationMatrix.multiplyBy(rz);
-    	
+    	*/
     	Vertices = rotatationMatrix.Vertices;
     }
     

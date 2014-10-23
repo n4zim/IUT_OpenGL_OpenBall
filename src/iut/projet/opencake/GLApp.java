@@ -40,7 +40,7 @@ public class GLApp {
 	/**
 	 * Échelle de la sphère
 	 */
-	float echelleSphere = 1.0f;
+	float echelleSphere = 2.5f;
 	
 	Cube cube = new Cube();
 	
@@ -63,9 +63,9 @@ public class GLApp {
         GL11.glMatrixMode(GL11.GL_MODELVIEW);			// retour au mode d'édition de modèle
        GL11.glEnable(GL11.GL_DEPTH_TEST);
         // Position initiale de la sphère
+        sphere.translationVector.x = 0f;
+        sphere.translationVector.y = 0f;
         sphere.translationVector.z = -6f;
-        sphere.translationVector.y = 5f;
-        sphere.translationVector.z = -9f;
 	}
 	
 	/**
@@ -74,7 +74,9 @@ public class GLApp {
 	 */
 	
 	float r = 0;
+	boolean activerModeDeplacement = false;
 	public void update() {
+        sphere.translationVector.z = -6f;
 		// Clear screen
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
@@ -86,25 +88,17 @@ public class GLApp {
         matSphere.Echelle(echelleSphere, echelleSphere, echelleSphere); // applique une transformation d'échelle
         
         Matrice4 matRot = new Matrice4();
-        matRot.Rotation(0.14f);
+        if(activerModeDeplacement) matRot.Rotation(r);
         
         matSphere.multiplyBy(matRot);
         
         // Fait chuter la sphère
-        sphere.fall();
+        	sphere.fall();
         
         // Dessin de la sphère, on lui donne matSphere pour qu'il y applique les transformations
         sphere.draw(matSphere);
         
-        Matrice4 matCube = new Matrice4();
-        //matCube.Rotation(r);
-       
-        cube.draw(matCube);
-        
         r += 0.01f;
-        
-        System.out.println(r + " => " + (float)(r%Math.PI));
-        
 	}
 	
 	/* GETTERS ET SETTERS */
@@ -155,5 +149,13 @@ public class GLApp {
 	
 	public Float getEchelle() {
 		return echelleSphere;
+	}
+	
+	public void setModeDeplacement(boolean b) {
+		activerModeDeplacement = b;
+	}
+	
+	public boolean getModeDeplacement() {
+		return activerModeDeplacement;
 	}
 }

@@ -1,7 +1,6 @@
 package iut.projet.opencake;
  
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.JCheckBox;
 
 /**
  * Fenêtre de paramètres
@@ -26,6 +26,7 @@ public class SettingWindow extends JFrame {
     JTextField txtNLignes = new JTextField();
     JTextField txtNPtLigne = new JTextField();
     JTextField txtEchelle = new JTextField();
+    JCheckBox chckbxWTFmode = new JCheckBox("Activer le mode de déplacement");
 		
     /**
 	* Construction de la fenêtre 
@@ -33,6 +34,8 @@ public class SettingWindow extends JFrame {
 	*/
 	public SettingWindow(GLApp glAppHandle) {
 		super("Options");
+		setResizable(false);
+		setAlwaysOnTop(true);
 		
 		handle = glAppHandle;
 	 
@@ -44,7 +47,7 @@ public class SettingWindow extends JFrame {
 	    
 	    // Définition du bouton
 	    JButton btnUpdate = new JButton("Mettre à jour");
-	    btnUpdate.setBounds(340, 155, 179, 25);
+	    btnUpdate.setBounds(340, 132, 179, 25);
 	    txtSpeed.setBounds(175, 48, 113, 20);
 	    
 	    // Mise à jour des champs
@@ -112,6 +115,15 @@ public class SettingWindow extends JFrame {
 			}
 		});
 	    
+	    chckbxWTFmode.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				handle.setModeDeplacement(chckbxWTFmode.isSelected());
+				handle.r = 0;
+			}
+		});
+	    
 	    // Ajout du bouton dans la fenêtre
 	    getContentPane().add(btnUpdate);
 	    
@@ -119,5 +131,8 @@ public class SettingWindow extends JFrame {
 	    lblContrleDeLa.setFont(new Font("Dialog", Font.BOLD, 20));
 	    lblContrleDeLa.setBounds(146, 12, 270, 25);
 	    getContentPane().add(lblContrleDeLa);
+	    
+	    chckbxWTFmode.setBounds(326, 175, 208, 23);
+	    getContentPane().add(chckbxWTFmode);
 	}
 }
