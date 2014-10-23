@@ -5,11 +5,11 @@ import java.util.Vector;
 import org.lwjgl.opengl.GL11;
 
 /**
- * Génere, gère et affiche une sphère de diamètre 1.
+ * GÃ©nere, gÃ¨re et affiche une sphÃ¨re de diamÃ¨tre 1.
  */
 public class Sphere {
 	/**
-	 * Liste des points composant la sphère
+	 * Liste des points composant la sphÃ¨re
 	 */
 	Vector<Vertex> points = new Vector<Vertex>();
 	
@@ -44,12 +44,12 @@ public class Sphere {
 	float speed = 0.003f;
 	
 	/**
-	 * Représente une simulation du temps, incrémenté de speed à chaque cycle de vie
+	 * ReprÃ©sente une simulation du temps, incrÃ©mentÃ© de speed Ã  chaque cycle de vie
 	 */
 	float t = 0;
 	
 	/**
-	 * Coefficient de la chute, ici égale à la constante de gravité terreste
+	 * Coefficient de la chute, ici Ã©gale Ã  la constante de gravitÃ© terreste
 	 */
 	float g = 9.81f;
 	
@@ -64,7 +64,7 @@ public class Sphere {
 	float limiteHaut = 3f;	
 	
 	/**
-	 * Génere la liste des points d'une sphère
+	 * GÃ©nere la liste des points d'une sphÃ¨re
 	 * @param Divisions verticales (segments)
 	 * @param Divisions par cercle
 	 */
@@ -74,7 +74,7 @@ public class Sphere {
 		
 		nbPointsParLigne = subPi;
 		
-		// Première boucle : division verticale
+		// PremiÃ¨re boucle : division verticale
 		for (int divSeg = 0; divSeg <= subSeg; divSeg++) {
 			// Calcule la position actuelle sur le premier cercle ("segment")
 			float t = (float) Math.PI * divSeg / subSeg;
@@ -84,7 +84,7 @@ public class Sphere {
 				// Position actuelle sur le cercle
 				float b = ((float)divPi * 2 * (float)Math.PI / (float)subPi);
 				
-				// Calcul des coordonnées
+				// Calcul des coordonnÃ©es
 				float x = (float) Math.sin(t) * (float) Math.cos(b);
 				float y = (float) Math.cos(t);
 				float z = (float) Math.sin(t) * (float) Math.sin(b);
@@ -96,16 +96,16 @@ public class Sphere {
 	}
 	
 	/**
-	 * Fait tomber l'objet dans une direction verticale donnée par fallDirection
+	 * Fait tomber l'objet dans une direction verticale donnÃ©e par fallDirection
 	 */
 	public void fall() {
 		// Simultion du temps
 		t += speed;
 
-		// calcul de l'accélération d'un corps ponctuel
+		// calcul de l'accÃ©lÃ©ration d'un corps ponctuel
 		fallFactor = -(float)1/2 * g * t * t * fallDirection;
 		
-		// Applique l'accéleration 
+		// Applique l'accÃ©leration 
 		translationVector.y += fallFactor;
 		
 		// Limites : quand elles sont atteintes, l'objet chute dans l'autre direction
@@ -126,18 +126,18 @@ public class Sphere {
 	}
 	
 	/**
-	 * Annule la chute (remet le temps à zéro pour annuler l'accélération)
+	 * Annule la chute (remet le temps Ã  zÃ©ro pour annuler l'accÃ©lÃ©ration)
 	 */
 	public void cancelfall() {
 		t = 0f;
 	}
 	
 	/**
-	 * Dessine la sphère en appliquant une matrice de transformation et suivant un vecteur de translation interne à la classe (translationVector)
+	 * Dessine la sphÃ¨re en appliquant une matrice de transformation et suivant un vecteur de translation interne Ã  la classe (translationVector)
 	 * @param transformMatrix
 	 */
 	public void draw(Matrice4 transformMatrix) {
-		// Dessin de la sphère (dessine deux triangles)
+		// Dessin de la sphÃ¨re (dessine deux triangles)
 		for(int i = 0; i < points.size() - nbPointsParLigne - 1; i++) {
 			GL11.glBegin(GL11.GL_POLYGON); // Begin polygon drawing
 			
@@ -164,7 +164,7 @@ public class Sphere {
 			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 
-			// 4, point suivant de la même ligne que i
+			// 4, point suivant de la mÃªme ligne que i
 			GL11.glColor3f(1, 1, 1);
 			p = points.get(i + 1);
 			pt = p.applyTransfrom(transformMatrix, translationVector);

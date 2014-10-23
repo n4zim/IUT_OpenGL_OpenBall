@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 /**
  * Objet : plan
- * non utilisé
+ * non utilisÃ©
  */
 public class Plane {
 	float x,y,z,w,h;

@@ -6,16 +6,16 @@ import org.lwjgl.opengl.GLUConstants;
 import org.lwjgl.util.glu.GLU;
 
 /**
- * Décrit l'application
+ * DÃ©crit l'application
  */
 public class GLApp {
 	/**
-	 * Handle sur la fenêtre
+	 * Handle sur la fenÃªtre
 	 */
 	MyDisplay display;
 	
 	/**
-	 * Objet : sphère
+	 * Objet : sphÃ¨re
 	 */
 	Sphere sphere;
 	
@@ -30,17 +30,17 @@ public class GLApp {
 	int nbPointsParLigne = 40;
 	
 	/**
-	 * Matrice de transformation de la sphère
+	 * Matrice de transformation de la sphÃ¨re
 	 */
 	Matrice4 matSphere = new Matrice4();
 	
 	/**
-	 * Échelle de la sphère
+	 * Ã‰chelle de la sphÃ¨re
 	 */
 	float echelleSphere = 1.0f;
 	
 	/**
-	 * Initialise l'application en créant une nouvelle sphère
+	 * Initialise l'application en crÃ©ant une nouvelle sphÃ¨re
 	 * @param display
 	 */
 	public GLApp(MyDisplay display) {
@@ -53,11 +53,11 @@ public class GLApp {
 	 */
 	public void start() {
         GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 		// couleur de fond
-        GL11.glMatrixMode(GL11.GL_PROJECTION); 			// mode d'édition de la projection
-        GLU.gluPerspective(45.0f, 1, 0.01f, 100.0f); 	// crée une perspective
-        GL11.glMatrixMode(GL11.GL_MODELVIEW);			// retour au mode d'édition de modèle
+        GL11.glMatrixMode(GL11.GL_PROJECTION); 			// mode d'Ã©dition de la projection
+        GLU.gluPerspective(45.0f, 1, 0.01f, 100.0f); 	// crÃ©e une perspective
+        GL11.glMatrixMode(GL11.GL_MODELVIEW);			// retour au mode d'Ã©dition de modÃ¨le
         
-        // Position initiale de la sphère
+        // Position initiale de la sphÃ¨re
         sphere.translationVector.z = -6f;
         sphere.translationVector.y = 5f;
         sphere.translationVector.z = -9f;
@@ -65,23 +65,23 @@ public class GLApp {
 	
 	/**
 	 * Cycle de vie
-	 * Se charge de la mise à jour graphique de l'app 
+	 * Se charge de la mise Ã  jour graphique de l'app 
 	 */
 	public void update() {
 		// Clear screen
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         
-		// Regénération de la sphère
+		// RegÃ©nÃ©ration de la sphÃ¨re
         sphere.MrSphere(nbLignes, nbPointsParLigne);
         
-        // Création de la matrice de transformation
+        // CrÃ©ation de la matrice de transformation
         matSphere = new Matrice4();
-        matSphere.Echelle(echelleSphere, echelleSphere, echelleSphere); // applique une transformation d'échelle
+        matSphere.Echelle(echelleSphere, echelleSphere, echelleSphere); // applique une transformation d'Ã©chelle
 
-        // Fait chuter la sphère
+        // Fait chuter la sphÃ¨re
         sphere.fall();
         
-        // Dessin de la sphère, on lui donne matSphere pour qu'il y applique les transformations
+        // Dessin de la sphÃ¨re, on lui donne matSphere pour qu'il y applique les transformations
         sphere.draw(matSphere);
 	}
 	

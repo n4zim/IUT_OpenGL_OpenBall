@@ -5,7 +5,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 /**
- * Gère la boucle de vie de l'application et ouvre les fenêtres
+ * GÃ¨re la boucle de vie de l'application et ouvre les fenÃªtres
  */
 public class MyDisplay {
 	/**
@@ -14,12 +14,12 @@ public class MyDisplay {
 	GLApp app;
 	
 	/**
-	 * Démarrage
+	 * DÃ©marrage
 	 */
 	public void start() {
 		app = new GLApp(this);
 		
-		// Réglage des propriétées et création de la fenêtre
+		// RÃ©glage des propriÃ©tÃ©es et crÃ©ation de la fenÃªtre
 		try {
 			Display.setTitle("OpenBall");
 			Display.setDisplayMode(new DisplayMode(800,800));
@@ -29,7 +29,7 @@ public class MyDisplay {
 			System.exit(0);
 		}
 		
-		// Création et affichage de la fenêtre de paramètres
+		// CrÃ©ation et affichage de la fenÃªtre de paramÃ¨tres
 		SettingWindow w = new SettingWindow(app);
 		w.setVisible(true);
 		
@@ -38,9 +38,9 @@ public class MyDisplay {
 		
 		// Boucle de vie
 		while (!Display.isCloseRequested()) {
-			app.update();		// mise à jour de la simulation
-			Display.update();	// mise à jour graphique
-			Display.sync(60);	// limite à 60 images par seconde
+			app.update();		// mise Ã  jour de la simulation
+			Display.update();	// mise Ã  jour graphique
+			Display.sync(60);	// limite Ã  60 images par seconde
 		}
 		
 		// Fin de vie du programme, desctruction des objets

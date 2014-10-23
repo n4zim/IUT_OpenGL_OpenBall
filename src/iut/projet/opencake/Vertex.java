@@ -3,14 +3,14 @@ package iut.projet.opencake;
 import org.lwjgl.opengl.GL11;
 
 /**
- * Représente un vecteur 4 (sous forme ponctuelle)
+ * ReprÃ©sente un vecteur 4 (sous forme ponctuelle)
  * utile des nombres flottants
  */
 class Vertex {
 	float x,y,z,w;
 	
 	/**
-	 * Crée un nouveau vecteur suivant les coordonées données et dont w sera 1
+	 * CrÃ©e un nouveau vecteur suivant les coordonÃ©es donnÃ©es et dont w sera 1
 	 * @param x
 	 * @param y
 	 * @param z
@@ -23,7 +23,7 @@ class Vertex {
 	}
 	
 	/**
-	 * Crée un nouveau vecteur suivant les coordonées données
+	 * CrÃ©e un nouveau vecteur suivant les coordonÃ©es donnÃ©es
 	 * @param x
 	 * @param y
 	 * @param z
@@ -40,7 +40,7 @@ class Vertex {
 	 * Transforme un vecteur selon une matrice de transformation et un vecteur de translation
 	 * @param transform Matrice de transformation
 	 * @param translate Vecteur de translation
-	 * @return Vecteur résultant de l'opération : Vecteur Actuel * Matrice + Vecteur translation
+	 * @return Vecteur rÃ©sultant de l'opÃ©ration : Vecteur Actuel * Matrice + Vecteur translation
 	 */
 	public Vertex applyTransfrom(Matrice4 transform, Vertex translate) {
 		float tx = 0, ty = 0, tz = 0, tw = 0; 

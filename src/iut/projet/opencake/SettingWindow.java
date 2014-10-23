@@ -11,13 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
- * Fenêtre de paramètres
+ * FenÃªtre de paramÃ¨tres
  */
 public class SettingWindow extends JFrame {
 	// Handle sur l'application
 	GLApp handle;
 
-	// Création des champs
+	// CrÃ©ation des champs
     JTextField txtSpeed = new JTextField();
     JTextField txtBottom = new JTextField();
     JTextField txtTop = new JTextField();
@@ -26,7 +26,7 @@ public class SettingWindow extends JFrame {
     JTextField txtEchelle = new JTextField();
 		
     /**
-	* Construction de la fenêtre 
+	* Construction de la fenÃªtre 
 	* @param glAppHandle
 	*/
 	public SettingWindow(GLApp glAppHandle) {
@@ -34,7 +34,7 @@ public class SettingWindow extends JFrame {
 		
 		handle = glAppHandle;
 	 
-		// Définit la taille de la fenêtre
+		// DÃ©finit la taille de la fenÃªtre
 	    setBounds(0, 0, 600, 80);
 	    
 	    // Action en fermeture (tuer le programme)
@@ -44,10 +44,10 @@ public class SettingWindow extends JFrame {
 	    FlowLayout layout = new FlowLayout();
 	    setLayout(layout);
 	    
-	    // Définition du bouton
+	    // DÃ©finition du bouton
 	    JButton btnUpdate = new JButton("update");
 	    
-	    // Mise à jour des champs
+	    // Mise Ã  jour des champs
 	    txtSpeed.setText(handle.getAnimSpeed().toString());
 	    txtBottom.setText(handle.getBottomWall().toString());
 	    txtTop.setText(handle.getTopWall().toString());
@@ -55,13 +55,13 @@ public class SettingWindow extends JFrame {
 	    txtNPtLigne.setText(handle.getNbPointsParLigne().toString());
 	    txtEchelle.setText(handle.getEchelle().toString());
 	    
-	    // Définition des tailles des champs
+	    // DÃ©finition des tailles des champs
 	    txtSpeed.setPreferredSize(new Dimension(50, 20));
 	    txtBottom.setPreferredSize(new Dimension(30, 20));
 	    txtBottom.setPreferredSize(new Dimension(30, 20));
 	    txtEchelle.setPreferredSize(new Dimension(30, 20));
 	    
-	    // Ajout des champs dans la fenêtre
+	    // Ajout des champs dans la fenÃªtre
 	    add(new JLabel("speed"));
 	    add(txtSpeed);
 	    
@@ -84,7 +84,7 @@ public class SettingWindow extends JFrame {
 	    btnUpdate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// Règle toutes les valeurs de l'application selon les champs
+				// RÃ¨gle toutes les valeurs de l'application selon les champs
 				handle.setAnimSpeed(Float.valueOf(txtSpeed.getText()));
 				handle.setBottomWall(Float.valueOf(txtBottom.getText()));
 				handle.setTopWall(Float.valueOf(txtTop.getText()));
@@ -94,7 +94,7 @@ public class SettingWindow extends JFrame {
 			}
 		});
 	    
-	    // Ajout du bouton dans la fenêtre
+	    // Ajout du bouton dans la fenÃªtre
 	    add(btnUpdate);
 	}
 	
