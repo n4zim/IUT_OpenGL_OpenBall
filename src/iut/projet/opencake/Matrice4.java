@@ -84,9 +84,7 @@ public class Matrice4 {
      * @param y
      * @param z
      */
-    public void Echelle(float x, float y, float z) {
-        float w = 1;
-        
+    public void Echelle(float x, float y, float z) {       
         multiplyByVector(new Vertex(x, y, z));
     }
     
