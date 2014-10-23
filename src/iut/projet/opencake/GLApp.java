@@ -5,51 +5,88 @@ import org.lwjgl.opengl.GL40;
 import org.lwjgl.opengl.GLUConstants;
 import org.lwjgl.util.glu.GLU;
 
+/**
+ * Décrit l'application
+ */
 public class GLApp {
+	/**
+	 * Handle sur la fenêtre
+	 */
 	MyDisplay display;
-	Cube cube = new Cube();
-	float rotation = 0.0f;
-	float a = -1f;
-	int factor = 1;
-	Sphere sphere;
-	int nbLignes = 50;
-	int nbPointsParLigne = 40;
-	int frame = 0;
-	Matrice4 matSphere = new Matrice4();
-	int c = 1;
-	int fa = 1;
 	
+	/**
+	 * Objet : sphère
+	 */
+	Sphere sphere;
+	
+	/**
+	 * Nombre de divisions verticales
+	 */
+	int nbLignes = 50;
+	
+	/**
+	 * Nombre de subdivisions de cercle
+	 */
+	int nbPointsParLigne = 40;
+	
+	/**
+	 * Matrice de transformation de la sphère
+	 */
+	Matrice4 matSphere = new Matrice4();
+	
+	/**
+	 * Échelle de la sphère
+	 */
+	float echelleSphere = 1.0f;
+	
+	/**
+	 * Initialise l'application en créant une nouvelle sphère
+	 * @param display
+	 */
 	public GLApp(MyDisplay display) {
 		this.display = display; 
 		sphere = new Sphere();
 	}
 	
+	/**
+	 * Initialisation du contexte OpenGL
+	 */
 	public void start() {
-
-        GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        GL11.glMatrixMode(GL11.GL_PROJECTION);
-        GLU.gluPerspective(45.0f, 1, 0.01f, 100.0f);
-        //GL11.glOrtho(-10, 10, -10, 10, 0.01f, 100.0f);
-        GL11.glMatrixMode(GL11.GL_MODELVIEW);
+        GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 		// couleur de fond
+        GL11.glMatrixMode(GL11.GL_PROJECTION); 			// mode d'édition de la projection
+        GLU.gluPerspective(45.0f, 1, 0.01f, 100.0f); 	// crée une perspective
+        GL11.glMatrixMode(GL11.GL_MODELVIEW);			// retour au mode d'édition de modèle
         
+        // Position initiale de la sphère
         sphere.translationVector.z = -6f;
         sphere.translationVector.y = 5f;
-	}
-	
-	public void update() {
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        
-        
-        sphere.MrSphere(nbLignes, nbPointsParLigne);
         sphere.translationVector.z = -9f;
-        matSphere = new Matrice4();
-        //matSphere.Echelle(2f, 2f, 2f);
-                
-        sphere.draw(matSphere);
-        sphere.fall();
 	}
 	
+	/**
+	 * Cycle de vie
+	 * Se charge de la mise à jour graphique de l'app 
+	 */
+	public void update() {
+		// Clear screen
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        
+		// Regénération de la sphère
+        sphere.MrSphere(nbLignes, nbPointsParLigne);
+        
+        // Création de la matrice de transformation
+        matSphere = new Matrice4();
+        matSphere.Echelle(echelleSphere, echelleSphere, echelleSphere); // applique une transformation d'échelle
 
+        // Fait chuter la sphère
+        sphere.fall();
+        
+        // Dessin de la sphère, on lui donne matSphere pour qu'il y applique les transformations
+        sphere.draw(matSphere);
+	}
+	
+	/* GETTERS ET SETTERS */
+	
 	public Float getBottomWall() {
 		return sphere.limiteBas;
 	}
@@ -88,5 +125,13 @@ public class GLApp {
 	
 	public void setNbPointsParLigne(Integer n) {
 		nbPointsParLigne = n;
+	}
+	
+	public void setEchelle(Float f) {
+		echelleSphere = f;
+	}
+	
+	public Float getEchelle() {
+		return echelleSphere;
 	}
 }

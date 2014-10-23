@@ -1,12 +1,26 @@
 package iut.projet.opencake;
 
+/**
+ * Représente une matrice
+ */
 public class Matrice4 {
+	// Tableau de valeurs
 	public float Vertices[] = new float[16];
 	
+	/**
+	 * Construit une matrice identitée par déafaut
+	 */
 	public Matrice4() {
 		Identitee();
 	}
 	
+	/**
+	 * Construction de la matrice identité : 
+	 *	1	0	0	0
+	 *	0	1	0	0
+	 *	0	0	1	0
+	 *	0	0	0	1
+	 */
 	public void Identitee() {
 		for(int i = 0; i < 16; i++) {
 			Vertices[i] = 0;
@@ -15,6 +29,13 @@ public class Matrice4 {
 		}
 	}
 	
+	/**
+	 * Applique une rotation
+	 * (ne fonctionne pas)
+	 * @param a roll
+	 * @param b pitch
+	 * @param c yaw
+	 */
     public void Rotation(float a, float b, float c) {
     	/*	0	1	2	3
     	 * 	4	5	6	7
@@ -56,17 +77,34 @@ public class Matrice4 {
     	Vertices = rotatationMatrix.Vertices;
     }
     
+    /**
+     * Applique une transformation d'échelle :
+     * Matrice * Vecteur d'échelle
+     * @param x
+     * @param y
+     * @param z
+     */
     public void Echelle(float x, float y, float z) {
         float w = 1;
         
         multiplyByVector(new Vertex(x, y, z));
     }
     
+    /**
+     * Retourne le numéro d'une case de la matrice
+     * @param i
+     * @param j
+     * @return
+     */
     public static int index(int i, int j) {
     	// numéro de case : 4 * num ligne + num colonne
     	return 4 * j + i;
     }
     
+    /**
+     * Multiplie la matrice par un vecteur
+     * @param vector
+     */
     public void multiplyByVector(Vertex vector) {
         for(int i = 0; i < 4; i++) {
         	Vertices[i] = Vertices[i]*vector.x;
@@ -82,6 +120,10 @@ public class Matrice4 {
         }
     }
     
+    /**
+     * Multiplie la matrice par une autre
+     * @param matriceB
+     */
     public void multiplyBy(Matrice4 matriceB) {
     	// Transcription algorithmique d'une multiplicatino de matrices carrées 
     	// C[i,j] = E (n; k=1) { a[i,k] * b[k, j] }
@@ -102,7 +144,10 @@ public class Matrice4 {
     	
     	this.Vertices = matriceC.Vertices;
     }
-
+    
+    /**
+     * Retourne un string représentant la matrice
+     */
 	public String toString() {
 		String str = "matrice : \n";
 		for(int i = 0; i < 16; i++) {
