@@ -137,16 +137,16 @@ public class Sphere {
 	 * @param transformMatrix
 	 */
 	public void draw(Matrice4 transformMatrix) {
-		// Dessin de la sphère
+		// Dessin de la sphère (dessine deux triangles)
 		for(int i = 0; i < points.size() - nbPointsParLigne - 1; i++) {
 			GL11.glBegin(GL11.GL_POLYGON); // Begin polygon drawing
 			
 			// Ordre de dessin
-			// 4 --- 1
-			// |     |
-			// 3 --- 2
+			// 4 - 1
+			// |   | 
+			// 3 - 2
 			
-			// 1, point i
+			// 4, point i
 			GL11.glColor3f(1, 0, 0);
 			Vertex p = points.get(i);
 			Vertex pt = p.applyTransfrom(transformMatrix, translationVector);
@@ -163,7 +163,7 @@ public class Sphere {
 			p = points.get(i + nbPointsParLigne + 1);
 			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
-			
+
 			// 4, point suivant de la même ligne que i
 			GL11.glColor3f(1, 1, 1);
 			p = points.get(i + 1);
