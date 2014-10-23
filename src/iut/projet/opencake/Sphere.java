@@ -115,9 +115,12 @@ public class Sphere {
 			translationVector.y = limiteBas;
 			fallDirection *= -1;
 			cancelfall();
+			
+			// Simulation du rebond
+			t = 0.18f;
 		}
 		
-		// Limite de position (hayt)
+		// Limite de position (haut)
 		if(translationVector.y > limiteHaut) {
 			translationVector.y = limiteHaut;
 			fallDirection *= -1;
@@ -126,10 +129,10 @@ public class Sphere {
 	}
 	
 	/**
-	 * Annule la chute (remet le temps à zéro pour annuler l'accélération)
+	 * Annule la chute
 	 */
 	public void cancelfall() {
-		t = 0f;
+		t = 0.08f;
 	}
 	
 	/**
