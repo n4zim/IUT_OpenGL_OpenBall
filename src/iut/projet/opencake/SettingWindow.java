@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 /**
  * Fenêtre de paramètres
  */
+@SuppressWarnings("serial")
 public class SettingWindow extends JFrame {
 	// Handle sur l'application
 	GLApp handle;
