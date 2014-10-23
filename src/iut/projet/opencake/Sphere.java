@@ -63,6 +63,8 @@ public class Sphere {
 	 */
 	float limiteHaut = 3f;	
 	
+	Cube cube = new Cube();
+	
 	/**
 	 * Génere la liste des points d'une sphère
 	 * @param Divisions verticales (segments)
@@ -151,29 +153,37 @@ public class Sphere {
 			
 			// 4, point i
 			GL11.glColor3f(1, 0, 0);
+			if(i % 10 == 0) GL11.glColor3f(0, 1, 1);
+
 			Vertex p = points.get(i);
 			Vertex pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 
 			// 2, point de la ligne en desssous
 			GL11.glColor3f(0, 1, 0);
+			if(i % 10 == 0) GL11.glColor3f(0, 1, 1);
+
 			p = points.get(i + nbPointsParLigne);
 			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 			
 			// 3, point suivant de la ligne en dessous
-			GL11.glColor3f(0.1f, 0.1f, 0.8f);
+			GL11.glColor3f(0.1f, 0.1f, 0.8f);if(i % 10 == 0) GL11.glColor3f(0, 1, 0);
+
 			p = points.get(i + nbPointsParLigne + 1);
 			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 
 			// 4, point suivant de la même ligne que i
 			GL11.glColor3f(1, 1, 1);
+			if(i % 10 == 0) GL11.glColor3f(0, 1, 0);
+
 			p = points.get(i + 1);
 			pt = p.applyTransfrom(transformMatrix, translationVector);
 			GL11.glVertex3f(pt.x, pt.y, pt.z);
 			
 			GL11.glEnd(); // end polygon
 		}
+		
 	}
 }

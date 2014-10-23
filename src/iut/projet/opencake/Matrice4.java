@@ -36,7 +36,7 @@ public class Matrice4 {
 	 * @param b pitch
 	 * @param c yaw
 	 */
-    public void Rotation(float a, float b, float c) {
+    public void Rotation(float a) {
     	/*	0	1	2	3
     	 * 	4	5	6	7
     	 * 	8	9	10	11
@@ -45,6 +45,26 @@ public class Matrice4 {
     	
     	// mat rotation =  mat Roll * mat Pitch *  mat Yaw
     	
+    	/*
+    	Matrice4 rotatationMatrix = new Matrice4();
+    	Matrice4 rx = new Matrice4();
+    	
+    	float x=0,y=0,z=0;
+
+    	rx.Vertices[0] = x * x * (1 - (float) (Math.cos(a))) + (float) Math.cos(a);
+    	rx.Vertices[1] = x * y * (1 - (float)Math.cos(a)) - z * (float)Math.sin(a);
+    	rx.Vertices[2] = x * z * (1 - (float)Math.cos(a)) + y * (float)Math.sin(a);
+    	
+    	rx.Vertices[4] = y * x * (1 - (float)Math.cos(a)) + z * (float)Math.cos(a);
+    	rx.Vertices[5] = y * y * (1 - (float)Math.cos(a)) + (float)Math.cos(a);
+    	rx.Vertices[6] = y * z * (1 - (float)Math.cos(a)) - x * (float)Math.sin(a);
+    	
+    	rx.Vertices[8] = x * z * (1 - (float)Math.cos(a)) - y * (float)Math.sin(a);
+    	rx.Vertices[9] = y * z * (1 - (float)Math.cos(a)) + x * (float)Math.sin(a);
+    	rx.Vertices[10] = z * z * (1 - (float)Math.cos(a)) + (float)Math.cos(a);
+    	
+    	rotatationMatrix.multiplyBy(rx);*/
+       	
     	Matrice4 rotatationMatrix = new Matrice4();
     	Matrice4 rx = new Matrice4();
 
@@ -57,20 +77,20 @@ public class Matrice4 {
     	rotatationMatrix.multiplyBy(rx);
     	
     	Matrice4 ry = new Matrice4();
-    	ry.Vertices[0] = (float) (Math.cos(b));
-    	ry.Vertices[2] = (float) (Math.sin(b));
+    	ry.Vertices[0] = (float) (Math.cos(a));
+    	ry.Vertices[2] = (float) (Math.sin(a));
 
-    	ry.Vertices[8] = (float) (-Math.sin(b));
-    	ry.Vertices[10] = (float) (Math.cos(b));
+    	ry.Vertices[8] = (float) (-Math.sin(a));
+    	ry.Vertices[10] = (float) (Math.cos(a));
     	
     	rotatationMatrix.multiplyBy(ry);
 
     	Matrice4 rz = new Matrice4();
-    	rz.Vertices[0] = (float) (Math.cos(c));
-    	rz.Vertices[1] = (float) (-Math.sin(c));
+    	rz.Vertices[0] = (float) (Math.cos(a));
+    	rz.Vertices[1] = (float) (-Math.sin(a));
 
-    	rz.Vertices[4] = (float) (Math.sin(c));
-    	rz.Vertices[5] = (float) (Math.cos(c));
+    	rz.Vertices[4] = (float) (Math.sin(a));
+    	rz.Vertices[5] = (float) (Math.cos(a));
     	
     	rotatationMatrix.multiplyBy(rz);
     	

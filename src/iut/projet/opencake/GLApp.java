@@ -1,7 +1,12 @@
 package iut.projet.opencake;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
+
+import sun.font.TrueTypeFont;
 
 /**
  * Décrit l'application
@@ -37,6 +42,8 @@ public class GLApp {
 	 */
 	float echelleSphere = 1.0f;
 	
+	Cube cube = new Cube();
+	
 	/**
 	 * Initialise l'application en créant une nouvelle sphère
 	 * @param display
@@ -52,9 +59,9 @@ public class GLApp {
 	public void start() {
         GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 		// couleur de fond
         GL11.glMatrixMode(GL11.GL_PROJECTION); 			// mode d'édition de la projection
-        GLU.gluPerspective(45.0f, 1, 0.01f, 100.0f); 	// crée une perspective
+        GLU.gluPerspective(70.0f, 1, 0.01f, 100.0f); 	// crée une perspective
         GL11.glMatrixMode(GL11.GL_MODELVIEW);			// retour au mode d'édition de modèle
-        
+       GL11.glEnable(GL11.GL_DEPTH_TEST);
         // Position initiale de la sphère
         sphere.translationVector.z = -6f;
         sphere.translationVector.y = 5f;
@@ -65,10 +72,12 @@ public class GLApp {
 	 * Cycle de vie
 	 * Se charge de la mise à jour graphique de l'app 
 	 */
+	
+	float r = 0;
 	public void update() {
 		// Clear screen
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        
+
 		// Regénération de la sphère
         sphere.MrSphere(nbLignes, nbPointsParLigne);
         
@@ -77,7 +86,7 @@ public class GLApp {
         matSphere.Echelle(echelleSphere, echelleSphere, echelleSphere); // applique une transformation d'échelle
         
         Matrice4 matRot = new Matrice4();
-        //matRot.Rotation(1.1f, 0.4f, 1.01f);
+        matRot.Rotation(0.14f);
         
         matSphere.multiplyBy(matRot);
         
@@ -86,6 +95,16 @@ public class GLApp {
         
         // Dessin de la sphère, on lui donne matSphere pour qu'il y applique les transformations
         sphere.draw(matSphere);
+        
+        Matrice4 matCube = new Matrice4();
+        //matCube.Rotation(r);
+       
+        cube.draw(matCube);
+        
+        r += 0.01f;
+        
+        System.out.println(r + " => " + (float)(r%Math.PI));
+        
 	}
 	
 	/* GETTERS ET SETTERS */
