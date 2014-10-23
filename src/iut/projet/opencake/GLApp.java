@@ -1,8 +1,6 @@
 package iut.projet.opencake;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL40;
-import org.lwjgl.opengl.GLUConstants;
 import org.lwjgl.util.glu.GLU;
 
 /**
